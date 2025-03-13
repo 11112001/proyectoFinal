@@ -69,9 +69,13 @@ void mostrarVertices() {
     liberarMemoria();
 
     if (esBinario) {
-        archivo.read(reinterpret_cast<char*>(&numVertices), sizeof(int));
-        if (numVertices <= 0 || numVertices > 1000000) {
-            cout << "Error: Número de vértices inválido (" << numVertices << ").\n";
+        archivo.seekg(0, ios::end);
+        int tamanoArchivo = archivo.tellg();
+        archivo.seekg(0, ios::beg);
+    
+        numVertices = tamanoArchivo / sizeof(Vertice);
+        if (numVertices <= 0 || numVertices > 1000) {
+            cout << "Error: Número de vértices inválido.\n";
             return;
         }
         vertices = new Vertice[numVertices];
@@ -136,5 +140,3 @@ int main() {
 
     return 0;
 }
-
-
