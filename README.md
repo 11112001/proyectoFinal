@@ -42,7 +42,8 @@ codeblocks o google.
 - [x] Mostrar matriz  
 - [ ] Unir vértices secuencialmente  
 - [ ] Unir vértices manualmente  
-- [ ] Generar archivo .obj  
+- [ ] Generar archivo .obj
+- [ ] Subir la documentación.
 
 
 
