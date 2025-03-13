@@ -10,6 +10,10 @@
 Este proyecto en C++ permite cargar, leer y mostrar archivos de vértices en formatos .txt y .bin.
 Se encarga de interpretar coordenadas en un espacio tridimensional y almacenarlas en estructuras dinámicas para su posterior procesamiento. (por ahora)
 
+## 📍 Versión Proyecto:
+**0.2.9**
+Log: Los principales cambios se hicieron en mostrar vertices. Dónde leía con normalidad los archivos .txt pero al momento de leer .bin, explotaba. Afortunadamente se logró corregir
+
 ## 🛠️ Tecnologías Utilizadas
 - ✅ C++
 - ✅Librerías estándar (iostream, fstream, cstring)
@@ -48,9 +52,9 @@ codeblocks o google.
 
 
 ## 📌 Autor
-Yeo - Desarrollador
-Año : 2025
-🔗 GitHub: 11112001
+- Yeo - Desarrollador
+- Año : 2025
+- 🔗 GitHub: 11112001
 
 
 ## 📌 Fun Fact.
