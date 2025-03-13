@@ -27,7 +27,7 @@ Se encarga de interpretar coordenadas en un espacio tridimensional y almacenarla
 ## 🔧 Cómo Compilar y Ejecutar
 1. Clona este repositorio:  
    ```bash
-   git clone https://github.com/tuusuario/proyectoFinal.git
+   git clone https://github.com/11112001/proyectoFinal.git
 
 ⚠️ **Advertencia**: Odio CodeBlocks. Esta parte va por si son normales como yo y usan cualquier otra cosa que no sea 
 codeblocks o google.
