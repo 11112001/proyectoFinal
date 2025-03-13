@@ -14,6 +14,7 @@ struct Vertice {
 // Variables globales
 Vertice* vertices = nullptr;
 int numVertices = 0;
+int** matrizAristas = nullptr;
 
 const char* obtenerExtension(const char* nombre) 
 {
@@ -29,6 +30,19 @@ const char* obtenerExtension(const char* nombre)
     */
 }
 
+void liberarMemoria() {
+    if (vertices) {
+        delete[] vertices;
+        vertices = nullptr;
+    }
+    if (matrizAristas) {
+        for (int i = 0; i < numVertices; i++) {
+            delete[] matrizAristas[i];
+        }
+        delete[] matrizAristas;
+        matrizAristas = nullptr;
+    }
+}
 // Función para cargar el archivo
 void cargarArchivo() {
     cout << "Ingrese el nombre del archivo de vértices (.txt o .bin): ";
@@ -130,7 +144,70 @@ void mostrarVertices() {
 
     archivo.close();
     cout << "Archivo cargado correctamente. Se encontraron " << numVertices << " vértices.\n";
+    for (int i = 0; i < numVertices; i++)
+    {
+        cout << "(" << (vertices + i)->x << ", " << (vertices + i)->y << ")\n";
+        
+    }
 }
+
+//Función para unir vertices y mostrar matriz adyacente
+void unirVertices()
+{
+    if(matrizAristas)
+    {
+        for (int i = 0; i < numVertices; i++)
+        {
+            delete [] *(matrizAristas + i);
+        }
+        
+        delete [] matrizAristas;
+    }
+
+    //crear la matriz dinámica.
+    matrizAristas = new int* [numVertices];
+    for (int i = 0; i < numVertices - 1; i ++)
+    {
+        *(matrizAristas + i) = new int[numVertices]{};
+    }
+
+    /*
+    el {} inicializa el valor de la fila en 0
+    El resumen de este for es para recorrer cada FILA de la matriz.
+    */
+
+    int* filaActual;
+
+    //conectarmos cada vértice.
+    for (int i = 0; i < numVertices - 1; i ++) //recorre hasta el penultimo vertice.
+    {
+        filaActual = *(matrizAristas + i);
+        *(filaActual + (i + 1)) = 1; //filaActual + (i + 1) apunta a la columna i + 1 de la fila actual. coloca un 1, indicando que el vértice i está conectado con i+1
+        filaActual = *(matrizAristas + (i + 1));//Ahora filaActual apunta a la siguiente fila (i+1)
+        *(filaActual + i) = 1; //filaActual + i apunta a la columna i de la fila i+1
+    }
+
+    //conectar el último vértice con el primero. Cerrar ciclos
+    filaActual = *(matrizAristas + (numVertices - 1));
+    *(filaActual) = 1;
+    filaActual = *matrizAristas;
+    *(filaActual + (numVertices - 1)) = 1;
+
+    //mostrar la matriz de adyacencia:
+    cout <<"\nMatriz generada:\n";
+    
+    for (int i = 0; i < numVertices; i++)
+    {
+        filaActual = *(matrizAristas + i);
+        for (int j = 0; j < numVertices; j++)
+        {
+            cout <<*(filaActual + j) << " ";
+        }
+        cout << "\n";
+    }
+}
+
+
 
 // Función principal con el menú
 int main() {
@@ -139,7 +216,8 @@ int main() {
         cout << "\n--- Menu ---\n";
         cout << "1. Cargar archivo de vértices\n";
         cout << "2. Mostrar vértices\n";
-        cout << "3. Salir\n";
+        cout << "3. Unir vértices secuencialmente\n";
+        cout << "4. Salir\n";
         cout << "Seleccione una opción: ";
         cin >> opcion;
 
@@ -151,7 +229,11 @@ int main() {
                 mostrarVertices();
                 break;
             case 3:
+                unirVertices();
+                break;
+            case 4:
                 cout << "Saliendo...\n";
+                liberarMemoria();
                 break;
             default:
                 cout << "Opción inválida, intente de nuevo.\n";
