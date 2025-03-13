@@ -11,17 +11,17 @@ Este proyecto en C++ permite cargar, leer y mostrar archivos de vértices en for
 Se encarga de interpretar coordenadas en un espacio tridimensional y almacenarlas en estructuras dinámicas para su posterior procesamiento. (por ahora)
 
 ## 🛠️ Tecnologías Utilizadas
-✅ C++
-✅Librerías estándar (iostream, fstream, cstring)
-✅ Git/GitHub
+- ✅ C++
+- ✅Librerías estándar (iostream, fstream, cstring)
+- ✅ Git/GitHub
 
 ## 📂 Estructura del Repositorio
 📂 main
- ┣ 📂 bin        # Archivos binarios de datos
- ┣ 📂 data       # Datos en formato de texto
- ┣ 📂 src        # Código fuente
- ┣ 📂 docs       # Documentación del proyecto
- ┗ 📄 README.md  # Descripción del proyecto
+- ┣ 📂 bin        # Archivos binarios de datos
+- ┣ 📂 data       # Datos en formato de texto
+- ┣ 📂 src        # Código fuente
+- ┣ 📂 docs       # Documentación del proyecto
+- ┗ 📄 README.md  # Descripción del proyecto
 
 
 ## 🔧 Cómo Compilar y Ejecutar
