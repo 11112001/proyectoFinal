@@ -6,29 +6,54 @@
 | ||_/ |_|     \___/  \__  | \____) \____) \___) \___/   |_|   |_||_| |_| \_||_||_|
 |_|                  (____/
 
-🚀 Descripción:
+## 🚀 Descripción:
 Este proyecto en C++ permite cargar, leer y mostrar archivos de vértices en formatos .txt y .bin.
 Se encarga de interpretar coordenadas en un espacio tridimensional y almacenarlas en estructuras dinámicas para su posterior procesamiento. (por ahora)
 
-🛠️ Tecnologías Utilizadas
+## 🛠️ Tecnologías Utilizadas
 ✅ C++
 ✅Librerías estándar (iostream, fstream, cstring)
 ✅ Git/GitHub
 
-🔧 Cómo Compilar y Ejecutar
+## 📂 Estructura del Repositorio
+📂 main
+ ┣ 📂 bin        # Archivos binarios de datos
+ ┣ 📂 data       # Datos en formato de texto
+ ┣ 📂 src        # Código fuente
+ ┣ 📂 docs       # Documentación del proyecto
+ ┗ 📄 README.md  # Descripción del proyecto
 
-Advertencia() = Odio CodeBlocks. Esta parte va por si no se posee de codeblocks
 
-1. Descargar GCC (Gnu Compiler Collection)
-2. g++ (nombre programa).cpp .o (ejecutable)
-3. ./(ejecutable)
+## 🔧 Cómo Compilar y Ejecutar
+1. Clona este repositorio:  
+   ```bash
+   git clone https://github.com/tuusuario/proyectoFinal.git
 
-📌 Autor
+⚠️ **Advertencia**: Odio CodeBlocks. Esta parte va por si son normales como yo y usan cualquier otra cosa que no sea 
+codeblocks o google.
+
+2. Descargar GCC (Gnu Compiler Collection)
+3. g++ (nombre programa).cpp .o (ejecutable)
+4. ./(ejecutable)
+
+## 🚀 To-Do (Mejoras Futuras)
+- [x] Cargar archivo de vértices  
+- [x] Mostrar vértices  
+- [x] Mostrar matriz  
+- [ ] Unir vértices secuencialmente  
+- [ ] Unir vértices manualmente  
+- [ ] Generar archivo .obj  
+
+
+
+## 📌 Autor
 Yeo - Desarrollador
 Año : 2025
 🔗 GitHub: 11112001
 🔗 Ig : yeo._ing
 
-📌 Fun Fact.
-Borré todo por accidente :D
+## 📌 Fun Fact.
+-Borré todo por accidente :D
+- Se ha creado un "respaldo". En caso que el folder manage salga mal.
+
 # proyectoFinal
