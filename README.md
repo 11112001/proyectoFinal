@@ -14,6 +14,10 @@ Se encarga de interpretar coordenadas en un espacio tridimensional y almacenarla
 **0.2.9**
 Log: Los principales cambios se hicieron en mostrar vertices. Dónde leía con normalidad los archivos .txt pero al momento de leer .bin, explotaba. Afortunadamente se logró corregir
 
+**0.3.0**
+_14/03/2025/14:46_
+Log: Se le ha agregado la función "unirVertices" que servirá para mostrar y unir los vertices. 
+
 ## 🛠️ Tecnologías Utilizadas
 - ✅ C++
 - ✅Librerías estándar (iostream, fstream, cstring)
