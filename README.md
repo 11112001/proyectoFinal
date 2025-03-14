@@ -52,7 +52,7 @@ codeblocks o google.
 - [x] Cargar archivo de vértices  
 - [x] Mostrar vértices  
 - [x] Mostrar matriz  
-- [ ] Unir vértices secuencialmente  
+- [x] Unir vértices secuencialmente  
 - [ ] Unir vértices manualmente  
 - [ ] Generar archivo .obj
 - [ ] Subir la documentación.
