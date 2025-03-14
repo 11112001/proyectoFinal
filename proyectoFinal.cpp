@@ -5,7 +5,7 @@
 using namespace std;
 
 struct Vertice {
-    float x, y, z;
+    float x, y;
 };
 
 // Variable global para almacenar el nombre del archivo
@@ -71,58 +71,61 @@ void mostrarVertices() {
     if (esBinario) {
         archivo.seekg(0, ios::end);
         int tamanoArchivo = archivo.tellg();
-        archivo.seekg(0, ios::beg);
-    
+        archivo.seekg(0, ios::beg);  //reinicio del mlprido puntero
+
         numVertices = tamanoArchivo / sizeof(Vertice);
         if (numVertices <= 0 || numVertices > 1000) {
             cout << "Error: Número de vértices inválido.\n";
             return;
         }
+
         vertices = new Vertice[numVertices];
         archivo.read(reinterpret_cast<char*>(vertices), sizeof(Vertice) * numVertices);
-    } else {
-        numVertices = 0;
-        char linea[100];
-        while (archivo.getline(linea, 100)) {
-            numVertices++;
-        }
 
-        archivo.clear();
-        archivo.seekg(0);
-        vertices = new Vertice[numVertices];
-        int indx = 0;
-
-        while (archivo.getline(linea, 100) && indx < numVertices) {
-            float x = 0, y = 0, z = 0;
-            char* token = strtok(linea, " ");
-            while (token) {
-                if (strchr(token, 'X')) x = atof(token + 2);
-                else if (strchr(token, 'Y')) y = atof(token + 2);
-                else if (strchr(token, 'Z')) z = atof(token + 2);
-                token = strtok(NULL, " ");
-            }
-            vertices[indx++] = {x, y, z};
+        // Se revisa si se leyeron todos los datos
+        if (archivo.gcount() != sizeof(Vertice) * numVertices) {
+            cout << "Error: No se leyeron todos los datos esperados.\n";
+            delete[] vertices;
+            vertices = nullptr;
+            return;
         }
     }
+
 
     archivo.close();
     cout << "Archivo cargado correctamente. Se encontraron " << numVertices << " vértices.\n";
     for (int i = 0; i < numVertices; i++) {
-        cout << "(" << vertices[i].x << ", " << vertices[i].y << ")\n";
+        cout << "(" << vertices[i].x << ", " << vertices[i].y << ")\n"; //aritmetica
     }
 }
 
-void unirVertices(){
+void unirVertices() {
     liberarMemoria();
-
-    if (numVertices < 2){
-        cout << "error se necesitan al menos dos vértices para unir \n";
+    
+    if (numVertices < 2) {
+        cout << "Error: Se necesitan al menos dos vértices para unir.\n";
         return;
     }
-
+    
     matrizAristas = new int*[numVertices];
     for (int i = 0; i < numVertices; i++) {
-        *(matrizAristas + i) = new int[numVertices]{};
+        matrizAristas[i] = new int[numVertices]{};
+    }
+    
+    for (int i = 0; i < numVertices - 1; i++) {
+        *(matrizAristas[i] + (i + 1)) = 1;
+        *(matrizAristas[i + 1] + i) = 1;
+    }
+    
+    *(matrizAristas[numVertices - 1]) = 1;
+    *(matrizAristas[0] + (numVertices - 1)) = 1;
+    
+    cout << "\nMatriz de Adyacencia generada:\n";
+    for (int i = 0; i < numVertices; i++) {
+        for (int j = 0; j < numVertices; j++) {
+            cout << *(matrizAristas[i] + j) << " ";
+        }
+        cout << "\n";
     }
 }
 
@@ -132,7 +135,8 @@ int main() {
         cout << "\n--- Menu ---\n";
         cout << "1. Cargar archivo de vértices\n";
         cout << "2. Mostrar vértices\n";
-        cout << "3. Salir\n";
+        cout << "3. Unir vértices y generar matriz\n";
+        cout << "4. Salir\n";
         cout << "Seleccione una opción: ";
         cin >> opcion;
 
@@ -144,13 +148,17 @@ int main() {
                 mostrarVertices();
                 break;
             case 3:
+                unirVertices();
+                break;
+            case 4:
                 cout << "Saliendo...\n";
                 liberarMemoria();
                 break;
             default:
                 cout << "Opción inválida, intente de nuevo.\n";
         }
-    } while (opcion != 3);
+    } while (opcion != 4);
 
     return 0;
 }
+
