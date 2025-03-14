@@ -63,7 +63,7 @@ codeblocks o google.
 - Yeo - Desarrollador
 - Año : 2025
 - 🔗 GitHub: 11112001
-
+- 🔗 ig: yeo._ing
 
 ## 📌 Fun Fact.
 -Borré todo por accidente :D
