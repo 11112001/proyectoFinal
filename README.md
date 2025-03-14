@@ -60,6 +60,6 @@ codeblocks o google.
 ## 📌 Fun Fact.
 -Borré todo por accidente :D
 - Se ha creado un "respaldo". En caso que el folder manage salga mal.
-- El manage de carpeta ha sido más complejo de lo que esperé. (No dormí 2 días por arreglarlo)
+- El manage de carpeta ha sido más complejo de lo que esperé. (
 
 # proyectoFinal
