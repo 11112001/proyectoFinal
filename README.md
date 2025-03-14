@@ -18,6 +18,10 @@ Log: Los principales cambios se hicieron en mostrar vertices. Dónde leía con n
 _14/03/2025/14:46_
 Log: Se le ha agregado la función "unirVertices" que servirá para mostrar y unir los vertices. 
 
+**0.3.1**
+__14/03/2025/hora__
+log: Se ha arreglado la lectura de archivos binarios, solo está leyendo dos vertices...
+
 ## 🛠️ Tecnologías Utilizadas
 - ✅ C++
 - ✅Librerías estándar (iostream, fstream, cstring)
