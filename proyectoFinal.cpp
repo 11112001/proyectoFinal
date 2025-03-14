@@ -112,6 +112,20 @@ void mostrarVertices() {
     }
 }
 
+void unirVertices(){
+    liberarMemoria();
+
+    if (numVertices < 2){
+        cout << "error se necesitan al menos dos vértices para unir \n";
+        return;
+    }
+
+    matrizAristas = new int*[numVertices];
+    for (int i = 0; i < numVertices; i++) {
+        *(matrizAristas + i) = new int[numVertices]{};
+    }
+}
+
 int main() {
     int opcion;
     do {
