@@ -19,7 +19,7 @@ _14/03/2025/14:46_
 Log: Se le ha agregado la función "unirVertices" que servirá para mostrar y unir los vertices. 
 
 **0.3.1**
-__14/03/2025/17:33__
+_14/03/2025/17:33_
 log: Se ha arreglado la lectura de archivos binarios, solo estaba leyendo dos vertices. El problema, era una variable Z en la estructura. Al elminarse, permitió recorrer las lineas con normalidad, la Z estaba ocupando espacio valioso.
 
 ## 🛠️ Tecnologías Utilizadas
