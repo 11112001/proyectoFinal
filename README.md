@@ -22,6 +22,10 @@ Log: Se le ha agregado la función "unirVertices" que servirá para mostrar y un
 _14/03/2025/17:33_
 log: Se ha arreglado la lectura de archivos binarios, solo estaba leyendo dos vertices. El problema, era una variable Z en la estructura. Al elminarse, permitió recorrer las lineas con normalidad, la Z estaba ocupando espacio valioso.
 
+**0.4.0**
+_14/03/2025_
+log: Se le ha agregado una nueva función para unir vertices manualmente (unirVerticesManual), desafortunadamente no entendí como unir vertices.
+
 ## 🛠️ Tecnologías Utilizadas
 - ✅ C++
 - ✅Librerías estándar (iostream, fstream, cstring)
@@ -53,7 +57,7 @@ codeblocks o google.
 - [x] Mostrar vértices  
 - [x] Mostrar matriz  
 - [x] Unir vértices secuencialmente  
-- [ ] Unir vértices manualmente  
+- [x] Unir vértices manualmente  
 - [ ] Generar archivo .obj
 - [ ] Subir la documentación.
 
