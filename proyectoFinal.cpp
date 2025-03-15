@@ -129,6 +129,38 @@ void unirVertices() {
     }
 }
 
+void unirVerticesManual() {
+    if (!matrizAristas) {
+        cout << "Error: Primero debe generar la matriz de adyacencia.\n";
+        return;
+    }
+
+    int v1, v2;
+    cout << "Ingrese el índice del primer vértice: ";
+    cin >> v1;
+    cout << "Ingrese el índice del segundo vértice: ";
+    cin >> v2;
+
+    if (v1 < 0 || v1 >= numVertices || v2 < 0 || v2 >= numVertices) {
+        cout << "Error: Índices fuera de rango.\n";
+        return;
+    }
+
+    *(matrizAristas[v1] + v2) = 1;
+    *(matrizAristas[v2] + v1) = 1;
+
+    cout << "Se ha unido el vértice " << v1 << " con el vértice " << v2 << ".\n";
+
+    cout << "\nMatriz de Adyacencia actualizada:\n";
+    for (int i = 0; i < numVertices; i++) {
+        for (int j = 0; j < numVertices; j++) {
+            cout << *(matrizAristas[i] + j) << " ";
+        }
+        cout << "\n";
+    }
+}
+
+
 int main() {
     int opcion;
     do {
@@ -136,6 +168,7 @@ int main() {
         cout << "1. Cargar archivo de vértices\n";
         cout << "2. Mostrar vértices\n";
         cout << "3. Unir vértices y generar matriz\n";
+        cout << "4. Unir vértices manualmente\n";
         cout << "4. Salir\n";
         cout << "Seleccione una opción: ";
         cin >> opcion;
@@ -151,9 +184,11 @@ int main() {
                 unirVertices();
                 break;
             case 4:
-                cout << "Saliendo...\n";
-                liberarMemoria();
+                unirVerticesManual();
                 break;
+            case 5:
+                cout <<"saliendo...";
+                liberarMemoria();
             default:
                 cout << "Opción inválida, intente de nuevo.\n";
         }
@@ -161,4 +196,3 @@ int main() {
 
     return 0;
 }
-
