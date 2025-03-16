@@ -71,7 +71,7 @@ void mostrarVertices() {
     if (esBinario) {
         archivo.seekg(0, ios::end);
         int tamanoArchivo = archivo.tellg();
-        archivo.seekg(0, ios::beg);  //reinicio del mlprido puntero
+        archivo.seekg(0, ios::beg); 
 
         numVertices = tamanoArchivo / sizeof(Vertice);
         if (numVertices <= 0 || numVertices > 1000) {
@@ -82,20 +82,49 @@ void mostrarVertices() {
         vertices = new Vertice[numVertices];
         archivo.read(reinterpret_cast<char*>(vertices), sizeof(Vertice) * numVertices);
 
-        // Se revisa si se leyeron todos los datos
         if (archivo.gcount() != sizeof(Vertice) * numVertices) {
             cout << "Error: No se leyeron todos los datos esperados.\n";
             delete[] vertices;
             vertices = nullptr;
             return;
         }
-    }
+    } else {
+        numVertices = 0;
+        char linea[100];
 
+        cout << "DEBUG: Leyendo archivo TXT...\n";
+
+        while (archivo.getline(linea, 100)) {
+            cout << "DEBUG: Línea leída -> " << linea << endl;
+            numVertices++;
+        }
+
+        cout << "DEBUG: Total de líneas encontradas = " << numVertices << endl;
+
+        archivo.clear();
+        archivo.seekg(0);  
+
+        vertices = new Vertice[numVertices];
+        int indx = 0;
+
+        while (archivo.getline(linea, 100) && indx < numVertices) {
+            float x = 0, y = 0;
+
+            char* token = strtok(linea, " ");
+            while (token) {
+                if (strchr(token, 'X')) x = atof(token + 2);
+                else if (strchr(token, 'Y')) y = atof(token + 2);
+                token = strtok(NULL, " ");
+            }
+
+            vertices[indx++] = {x, y};
+        }
+    }
 
     archivo.close();
     cout << "Archivo cargado correctamente. Se encontraron " << numVertices << " vértices.\n";
     for (int i = 0; i < numVertices; i++) {
-        cout << "(" << vertices[i].x << ", " << vertices[i].y << ")\n"; //aritmetica
+        cout << "(" << vertices[i].x << ", " << vertices[i].y << ")\n";
     }
 }
 
@@ -160,7 +189,6 @@ void unirVerticesManual() {
     }
 }
 
-
 int main() {
     int opcion;
     do {
@@ -169,7 +197,7 @@ int main() {
         cout << "2. Mostrar vértices\n";
         cout << "3. Unir vértices y generar matriz\n";
         cout << "4. Unir vértices manualmente\n";
-        cout << "4. Salir\n";
+        cout << "5. Salir\n";
         cout << "Seleccione una opción: ";
         cin >> opcion;
 
@@ -187,12 +215,13 @@ int main() {
                 unirVerticesManual();
                 break;
             case 5:
-                cout <<"saliendo...";
+                cout << "Saliendo...\n";
                 liberarMemoria();
+                break;
             default:
                 cout << "Opción inválida, intente de nuevo.\n";
         }
-    } while (opcion != 4);
+    } while (opcion != 5);
 
     return 0;
 }
