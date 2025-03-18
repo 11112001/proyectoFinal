@@ -32,12 +32,16 @@ _??/03/2025_ 00:27
 log: Se ha creado un while nuevo, para que pueda saltar lineas al momento de abrir los archivos .TXT (antes no servía la lecutra lol)
 
 **0.6.2**
-_??/03/2025_ 00:37
+_18/03/2025_ 00:37
 log: Se ha corregido el unir vertices manualmente. Se ha agregado un v1 -= 1, v2=1. Restamos 1 al índice ingresado por el usuario para que el primer vértice corresponda con el índice 0 de la matriz, el segundo con el índice 1, y así sucesivamente
 
 **1.0.0**
-__??/03/2025 2:00 
+_18/03/2025_ 2:00 
 log: Se ha agregado la última función. El programa funciona!!!! ESTA ES LA VERSION FINAL
+
+**1.0.1**
+_18/03/2025_ 10:05
+log: Se ha agregado la documentación. 
 
 ## 🛠️ Tecnologías Utilizadas
 - ✅ C++
@@ -71,8 +75,8 @@ codeblocks o google.
 - [x] Mostrar matriz  
 - [x] Unir vértices secuencialmente  
 - [x] Unir vértices manualmente  
-- [ ] Generar archivo .obj
-- [ ] Subir la documentación.
+- [x] Generar archivo .obj
+- [x] Subir la documentación.
 
 
 
