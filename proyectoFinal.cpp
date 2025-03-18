@@ -71,7 +71,7 @@ void mostrarVertices() {
     if (esBinario) {
         archivo.seekg(0, ios::end);
         int tamanoArchivo = archivo.tellg();
-        archivo.seekg(0, ios::beg); 
+        archivo.seekg(0, ios::beg);  //reinicio del puntero
 
         numVertices = tamanoArchivo / sizeof(Vertice);
         if (numVertices <= 0 || numVertices > 1000) {
@@ -92,16 +92,9 @@ void mostrarVertices() {
         numVertices = 0;
         char linea[100];
 
-        
         while (archivo.getline(linea, 100)) {
-            //cout << linea << endl;
             numVertices++;
         }
-
-        //No leía las lineas. Decidí comentar el cout para que solo cuente las lineas, más no las imprima
-        
-        cout << "Total de líneas encontradas = " << numVertices << endl;
-
 
         archivo.clear();
         archivo.seekg(0);  
@@ -171,6 +164,9 @@ void unirVerticesManual() {
     cin >> v1;
     cout << "Ingrese el índice del segundo vértice: ";
     cin >> v2;
+
+    v1 -=1;
+    v2 -=1;
 
     if (v1 < 0 || v1 >= numVertices || v2 < 0 || v2 >= numVertices) {
         cout << "Error: Índices fuera de rango.\n";
