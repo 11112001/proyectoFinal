@@ -26,6 +26,10 @@ log: Se ha arreglado la lectura de archivos binarios, solo estaba leyendo dos ve
 _14/03/2025_
 log: Se le ha agregado una nueva función para unir vertices manualmente (unirVerticesManual), desafortunadamente no entendí como unir vertices.
 
+**0.4.1**
+_??/03/2025_ 00:27
+log: Se ha creado un while nuevo, para que pueda saltar lineas al momento de abrir los archivos .TXT (antes no servía la lecutra lol)
+
 ## 🛠️ Tecnologías Utilizadas
 - ✅ C++
 - ✅Librerías estándar (iostream, fstream, cstring)
