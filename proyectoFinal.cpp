@@ -187,6 +187,31 @@ void unirVerticesManual() {
     }
 }
 
+void generarArchivoOBJ() {
+    ofstream archivoOBJ("salida.obj");
+    
+    if (!archivoOBJ) {
+        cout << "Error: No se pudo abrir el archivo para escribir.\n";
+        return;
+    }
+
+    for (int i = 0; i < numVertices; i++) {
+        archivoOBJ << "v " << vertices[i].x << " " << vertices[i].y << " 0\n";
+    }
+
+    for (int i = 0; i < numVertices; i++) {
+        for (int j = i + 1; j < numVertices; j++) {
+            if (matrizAristas[i][j] == 1) {
+                archivoOBJ << "l " << i + 1 << " " << j + 1 << "\n"; // +1 para que empiece desde el índice 1
+            }
+        }
+    }
+
+    archivoOBJ.close();
+    cout << "Archivo .obj generado correctamente como 'salida.obj'.\n";
+}
+
+
 int main() {
     int opcion;
     do {
@@ -195,7 +220,8 @@ int main() {
         cout << "2. Mostrar vértices\n";
         cout << "3. Unir vértices y generar matriz\n";
         cout << "4. Unir vértices manualmente\n";
-        cout << "5. Salir\n";
+        cout << "5. Generar archivo .obg \n";
+        cout << "6. Salir\n";
         cout << "Seleccione una opción: ";
         cin >> opcion;
 
@@ -213,6 +239,9 @@ int main() {
                 unirVerticesManual();
                 break;
             case 5:
+                generarArchivoOBJ();
+                break;
+            case 6:
                 cout << "Saliendo...\n";
                 liberarMemoria();
                 break;
