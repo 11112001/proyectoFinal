@@ -7,8 +7,9 @@
 |_|                  (____/
 
 ## 🚀 Descripción:
-Este proyecto en C++ permite cargar, leer y mostrar archivos de vértices en formatos .txt y .bin.
-Se encarga de interpretar coordenadas en un espacio tridimensional y almacenarlas en estructuras dinámicas para su posterior procesamiento. (por ahora)
+El proyecto "Gestión y Manipulación de Vértices en un Espacio 2D" es una aplicación interactiva desarrollada en C++ que permite a los usuarios cargar, visualizar, manipular y exportar un conjunto de vértices en un espacio bidimensional. A través de un menú interactivo en la consola, los usuarios pueden trabajar con datos geométricos almacenados en archivos de texto o binarios, representando figuras y relaciones entre puntos en un plano 2D.
+
+El objetivo principal de este proyecto es ofrecer una herramienta sencilla y eficaz para gestionar vértices de figuras geométricas, representar sus conexiones a través de una matriz de adyacencia y exportar estos datos a un formato estándar de la industria, el .obj, utilizado en programas de modelado 3D como Blender o AutoCAD.
 
 ## 📍 Versión Proyecto:
 **0.2.9**
