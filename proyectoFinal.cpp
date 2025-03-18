@@ -92,14 +92,16 @@ void mostrarVertices() {
         numVertices = 0;
         char linea[100];
 
-        cout << "DEBUG: Leyendo archivo TXT...\n";
-
+        
         while (archivo.getline(linea, 100)) {
-            cout << "DEBUG: Línea leída -> " << linea << endl;
+            //cout << linea << endl;
             numVertices++;
         }
 
-        cout << "DEBUG: Total de líneas encontradas = " << numVertices << endl;
+        //No leía las lineas. Decidí comentar el cout para que solo cuente las lineas, más no las imprima
+        
+        cout << "Total de líneas encontradas = " << numVertices << endl;
+
 
         archivo.clear();
         archivo.seekg(0);  
