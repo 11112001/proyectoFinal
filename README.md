@@ -35,6 +35,10 @@ log: Se ha creado un while nuevo, para que pueda saltar lineas al momento de abr
 _??/03/2025_ 00:37
 log: Se ha corregido el unir vertices manualmente. Se ha agregado un v1 -= 1, v2=1. Restamos 1 al índice ingresado por el usuario para que el primer vértice corresponda con el índice 0 de la matriz, el segundo con el índice 1, y así sucesivamente
 
+**0.5.0**
+__??/03/2025 2:00 
+log: Se ha agregado la última función. El programa funciona!!!! ESTA ES LA VERSION FINAL
+
 ## 🛠️ Tecnologías Utilizadas
 - ✅ C++
 - ✅Librerías estándar (iostream, fstream, cstring)
