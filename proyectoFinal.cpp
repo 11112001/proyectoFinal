@@ -8,7 +8,6 @@ struct Vertice {
     float x, y;
 };
 
-// Variable global para almacenar el nombre del archivo
 char nombreArchivo[50];
 Vertice* vertices = nullptr;
 int numVertices = 0;
@@ -49,16 +48,6 @@ void cargarArchivo() {
     }
     strcat(nombreArchivo, nombreEntrada);
     cout << "Archivo seleccionado: " << nombreArchivo << endl;
-}
-
-void mostrarVertices() {
-    if (!nombreArchivo[0]) {
-        cout << "Error: No hay archivo cargado.\n";
-        return;
-    }
-
-    const char* extension = obtenerExtension(nombreArchivo);
-    bool esBinario = (strcmp(extension, "bin") == 0);
 
     ifstream archivo(nombreArchivo, esBinario ? ios::binary : ios::in);
     if (!archivo) {
@@ -66,12 +55,12 @@ void mostrarVertices() {
         return;
     }
 
-    liberarMemoria();
+    liberarMemoria();  
 
     if (esBinario) {
         archivo.seekg(0, ios::end);
         int tamanoArchivo = archivo.tellg();
-        archivo.seekg(0, ios::beg);  //reinicio del puntero
+        archivo.seekg(0, ios::beg);  
 
         numVertices = tamanoArchivo / sizeof(Vertice);
         if (numVertices <= 0 || numVertices > 1000) {
@@ -123,31 +112,48 @@ void mostrarVertices() {
     }
 }
 
+void mostrarVertices() {
+    if (!vertices || numVertices == 0) {
+        cout << "Error: No hay vértices cargados.\n";
+        return;
+    }
+
+    cout << "Vértices cargados (" << numVertices << "):\n";
+    for (int i = 0; i < numVertices; i++) {
+        cout << "Vértice " << i+1 << ": (" << (vertices + i)->x << ", " << (vertices + i)->y << ")\n";
+    }
+}
+
 void unirVertices() {
-    liberarMemoria();
-    
     if (numVertices < 2) {
         cout << "Error: Se necesitan al menos dos vértices para unir.\n";
         return;
     }
-    
-    matrizAristas = new int*[numVertices];
+
+    if (matrizAristas) {
+        for (int i = 0; i < numVertices; i++) {
+            delete[] matrizAristas[i];
+        }
+        delete[] matrizAristas;
+    }
+
+    matrizAristas = new int*[numVertices];  
     for (int i = 0; i < numVertices; i++) {
-        matrizAristas[i] = new int[numVertices]{};
+        matrizAristas[i] = new int[numVertices]();  
     }
-    
+
     for (int i = 0; i < numVertices - 1; i++) {
-        *(matrizAristas[i] + (i + 1)) = 1;
-        *(matrizAristas[i + 1] + i) = 1;
+        *(*(matrizAristas + i) + (i + 1)) = 1;  
+        *(*(matrizAristas + (i + 1)) + i) = 1;  
     }
     
-    *(matrizAristas[numVertices - 1]) = 1;
-    *(matrizAristas[0] + (numVertices - 1)) = 1;
-    
+    *(*(matrizAristas + (numVertices - 1))) = 1;
+    *(*(matrizAristas) + (numVertices - 1)) = 1;
+
     cout << "\nMatriz de Adyacencia generada:\n";
     for (int i = 0; i < numVertices; i++) {
         for (int j = 0; j < numVertices; j++) {
-            cout << *(matrizAristas[i] + j) << " ";
+            cout << *(*(matrizAristas + i) + j) << " ";
         }
         cout << "\n";
     }
@@ -160,57 +166,81 @@ void unirVerticesManual() {
     }
 
     int v1, v2;
-    cout << "Ingrese el índice del primer vértice: ";
+    cout << "Ingrese el índice del primer vértice (1-" << numVertices << "): ";
     cin >> v1;
-    cout << "Ingrese el índice del segundo vértice: ";
+    cout << "Ingrese el índice del segundo vértice (1-" << numVertices << "): ";
     cin >> v2;
 
-    v1 -=1;
-    v2 -=1;
+    v1 -= 1;  
+    v2 -= 1;
 
     if (v1 < 0 || v1 >= numVertices || v2 < 0 || v2 >= numVertices) {
         cout << "Error: Índices fuera de rango.\n";
         return;
     }
 
-    *(matrizAristas[v1] + v2) = 1;
-    *(matrizAristas[v2] + v1) = 1;
+    *(*(matrizAristas + v1) + v2) = 1;
+    *(*(matrizAristas + v2) + v1) = 1;
 
-    cout << "Se ha unido el vértice " << v1 << " con el vértice " << v2 << ".\n";
+    cout << "Se ha unido el vértice " << (v1+1) << " con el vértice " << (v2+1) << ".\n";
 
     cout << "\nMatriz de Adyacencia actualizada:\n";
     for (int i = 0; i < numVertices; i++) {
         for (int j = 0; j < numVertices; j++) {
-            cout << *(matrizAristas[i] + j) << " ";
+            cout << *(*(matrizAristas + i) + j) << " ";
         }
         cout << "\n";
     }
 }
 
 void generarArchivoOBJ() {
-    ofstream archivoOBJ("salida.obj");
-    
+    if (numVertices == 0) {
+        cout << "Error: No se han cargado vértices.\n";
+        return;
+    }
+
+    if (!matrizAristas || numVertices < 2) {
+        cout << "Error: La matriz de adyacencia no ha sido generada o no hay suficientes vértices.\n";
+        return;
+    }
+
+    char nombreBase[50] = {0};
+    const char* ultimaBarra = strrchr(nombreArchivo, '/');
+    if (ultimaBarra) {
+        strcpy(nombreBase, ultimaBarra + 1);
+    } else {
+        strcpy(nombreBase, nombreArchivo);
+    }
+
+    char* punto = strrchr(nombreBase, '.');
+    if (punto) {
+        *punto = '\0';
+    }
+
+    char nombreSalida[100] = {0};
+    sprintf(nombreSalida, "%s.obj", nombreBase);
+
+    ofstream archivoOBJ(nombreSalida);
     if (!archivoOBJ) {
         cout << "Error: No se pudo abrir el archivo para escribir.\n";
         return;
     }
 
     for (int i = 0; i < numVertices; i++) {
-        archivoOBJ << "v " << vertices[i].x << " " << vertices[i].y << " 0\n";
+        archivoOBJ << "v " << (vertices + i)->x << " " << (vertices + i)->y << " 0\n";
     }
 
     for (int i = 0; i < numVertices; i++) {
         for (int j = i + 1; j < numVertices; j++) {
-            if (matrizAristas[i][j] == 1) {
-                archivoOBJ << "l " << i + 1 << " " << j + 1 << "\n"; // +1 para que empiece desde el índice 1
+            if (*(*(matrizAristas + i) + j) == 1) {
+                archivoOBJ << "l " << i + 1 << " " << j + 1 << "\n"; 
             }
         }
     }
 
     archivoOBJ.close();
-    cout << "Archivo .obj generado correctamente como 'salida.obj'.\n";
+    cout << "Archivo .obj generado correctamente como '" << nombreSalida << "'.\n";
 }
-
 
 int main() {
     int opcion;
@@ -220,7 +250,7 @@ int main() {
         cout << "2. Mostrar vértices\n";
         cout << "3. Unir vértices y generar matriz\n";
         cout << "4. Unir vértices manualmente\n";
-        cout << "5. Generar archivo .obg \n";
+        cout << "5. Generar archivo .obj \n";
         cout << "6. Salir\n";
         cout << "Seleccione una opción: ";
         cin >> opcion;
@@ -248,7 +278,7 @@ int main() {
             default:
                 cout << "Opción inválida, intente de nuevo.\n";
         }
-    } while (opcion != 5);
+    } while (opcion != 6); 
 
     return 0;
 }
