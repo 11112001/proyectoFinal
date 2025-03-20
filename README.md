@@ -43,6 +43,12 @@ log: Se ha agregado la última función. El programa funciona!!!! ESTA ES LA VER
 _18/03/2025_ 10:05
 log: Se ha agregado la documentación. 
 
+**2.0.0**
+_20/03/2025_ 1:23 
+log1: Se ha mejorado la forma en que se manejan las estructuras, se corrigió la notación bidimensional de arrays tradicional para dar paso a Apuntadores \n
+
+log2: Se hicieron ajustes para que el .obj sea leído y escrito correctamente.
+
 ## 🛠️ Tecnologías Utilizadas
 - ✅ C++
 - ✅Librerías estándar (iostream, fstream, cstring)
