@@ -45,8 +45,7 @@ log: Se ha agregado la documentación.
 
 **2.0.0**
 _20/03/2025_ 1:23 
-log1: Se ha mejorado la forma en que se manejan las estructuras, se corrigió la notación bidimensional de arrays tradicional para dar paso a Apuntadores \n
-
+log1: Se ha mejorado la forma en que se manejan las estructuras, se corrigió la notación bidimensional de arrays tradicional para dar paso a Apuntadores 
 log2: Se hicieron ajustes para que el .obj sea leído y escrito correctamente.
 
 ## 🛠️ Tecnologías Utilizadas
